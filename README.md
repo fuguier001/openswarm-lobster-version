@@ -29,6 +29,33 @@ OpenSwarm 是一个 **AI 开发团队编排系统**，通过 Worker/Reviewer 对
 
 ---
 
+## 💻 Windows 用户
+
+**Windows 用户的安装过程与 macOS/Linux 有所不同**，包括：
+- 安装 Docker Desktop for Windows
+- PowerShell 命令和权限配置
+- 路径和空格处理
+- Git Bash 的使用
+
+**详细的 Windows 安装指南**：📖 [WINDOWS.md](WINDOWS.md)
+
+包含完整的 9 步安装流程：
+1. 安装 OpenClaw（npm 或 Chocolatey）
+2. 安装 Git for Windows
+3. 安装 Docker Desktop for Windows
+4. 安装 ChromaDB（Docker 或 Python）
+5. 安装 Waza Skill
+6. 克隆项目并安装
+7. 验证安装
+8. 重启 OpenClaw
+9. 开始使用
+
+以及 Windows 特定的常见问题解答。
+
+---
+
+---
+
 ## 🦀 为什么是"龙虾版"？
 
 电脑里养了太多虾（OpenClaw 的 AI 助手称为"虾"），如果只是某个模式好一些，完全没必要再安装新的虾。因此决定将 OpenSwarm 的核心功能改造为 OpenClaw 的插件（Skills），在不增加新虾的情况下，获得 OpenSwarm 的所有能力。
@@ -123,6 +150,7 @@ docker ps
 
 - **Windows**：
   下载 Docker Desktop：https://www.docker.com/products/docker-desktop/
+  **详细安装指南**：见 [WINDOWS.md](WINDOWS.md)
 
 **启动 Docker：**
 ```bash
