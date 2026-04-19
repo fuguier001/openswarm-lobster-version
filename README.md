@@ -18,9 +18,14 @@ OpenSwarm 是一个 **AI 开发团队编排系统**，通过 Worker/Reviewer 对
 - 🤖 **automation**：自动化集成，定时任务，自动检查和报告
 
 **依赖关系**：
-- ⚠️ pair-coding：需要 Waza skill（check skill）
+- ⚠️ pair-coding：需要 Waza skill（工程习惯技能库）
 - ✅ code-registry：无需额外依赖
 - ⚠️ cognitive-memory：需要 ChromaDB
+
+**重要说明**：
+- Waza skill 是 OpenClaw 的标准 skill，**不包含在本项目中**
+- 需要单独安装 Waza skill
+- Waza 项目地址：https://github.com/tw93/Waza
 
 ---
 
@@ -158,6 +163,76 @@ python3 --version
 
 ---
 
+### 第 2.5 步：安装 Waza Skill（必需）
+
+**什么是 Waza？**
+
+Waza (技) 是一个工程习惯技能库，包含 8 个核心技能：
+- **think** - 设计验证
+- **design** - UI 设计
+- **check** - 代码审查 ⚠️ pair-coding 需要
+- **hunt** - 系统调试
+- **write** - 自然写作
+- **learn** - 深度研究
+- **read** - 内容获取
+- **health** - 配置审计
+
+**Waza 项目地址**：https://github.com/tw93/Waza
+
+**注意**：Waza skill **不包含在本项目中**，需要单独安装。
+
+#### 检查 Waza 是否已安装
+
+```bash
+# 检查 Waza skill
+ls ~/.npm-global/lib/node_modules/openclaw/skills/waza/SKILL.md
+
+# 或查看 OpenClaw skills 列表
+openclaw skills list | grep waza
+```
+
+如果命令执行成功，说明 Waza 已安装。
+
+#### 安装 Waza
+
+**方法 1：使用 npm（推荐）**
+
+```bash
+# 安装 Waza skill
+npm install -g waza-skills
+
+# 验证安装
+ls ~/.npm-global/lib/node_modules/openclaw/skills/waza/SKILL.md
+```
+
+**方法 2：从源码安装**
+
+```bash
+# 克隆 Waza 仓库
+git clone https://github.com/tw93/Waza.git
+
+# 安装 Waza
+cd Waza
+npm install
+npm link
+
+# 验证安装
+ls ~/.npm-global/lib/node_modules/openclaw/skills/waza/SKILL.md
+```
+
+#### 验证 Waza
+
+```bash
+# 检查 Waza skill 文件
+cat ~/.npm-global/lib/node_modules/openclaw/skills/waza/SKILL.md
+
+# 应该看到 Waza 的描述和 8 个核心技能
+```
+
+**如果 Waza 未安装，pair-coding skill 会无法进行代码审查。**
+
+---
+
 ### 第 3 步：安装 ChromaDB
 
 #### 方法 1：使用 Docker（推荐）
@@ -232,7 +307,7 @@ cat ~/.openclaw/workspace/HEARTBEAT.md
 curl http://localhost:8000/api/v1/heartbeat
 
 # 4. 检查 Waza（如果使用）
-ls ~/.npm-global/lib/node_modules/openclaw/skills/waza/skills/check/
+ls ~/.npm-global/lib/node_modules/openclaw/skills/waza/SKILL.md
 ```
 
 ---
@@ -372,7 +447,32 @@ A: 重启 OpenClaw，然后直接对话：
 你：搜索我之前的配置
 ```
 
-### Q: 安装失败怎么办？
+### Q: Waza 必须安装吗？
+
+A: pair-coding skill 需要 Waza skill 进行代码审查。Waza 是 OpenClaw 的标准 skill，**不包含在本项目中**，需要单独安装。
+
+**安装命令**：
+```bash
+npm install -g waza-skills
+```
+
+**项目地址**：https://github.com/tw93/Waza
+
+### Q: ChromaDB 必须安装吗？
+
+A: cognitive-memory skill 需要 ChromaDB。如果不安装：
+- ✅ pair-coding 仍然可以使用
+- ✅ code-registry 仍然可以使用
+- ❌ cognitive-memory 无法使用
+
+### Q: 可以只安装部分 skills 吗？
+
+A: 可以。安装后，删除不需要的 skills 即可：
+```bash
+rm -rf ~/.agents/skills/cognitive-memory  # 删除 cognitive-memory
+```
+
+### Q: 如何卸载？
 
 A: 检查：
 1. OpenClaw 是否正确安装

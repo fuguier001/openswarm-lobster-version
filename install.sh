@@ -24,17 +24,42 @@ echo ""
 # 检查 Waza
 echo "🔍 检查 Waza skill..."
 
-WAZA_CHECK_SKILL="${HOME}/.npm-global/lib/node_modules/openclaw/skills/waza/skills/check"
-if [ -f "$WAZA_CHECK_SKILL/SKILL.md" ]; then
-    echo "   ✓ Waza check skill 已安装"
+WAZA_SKILL="${HOME}/.npm-global/lib/node_modules/openclaw/skills/waza/SKILL.md"
+if [ -f "$WAZA_SKILL" ]; then
+    echo "   ✓ Waza skill 已安装"
     WAZA_INSTALLED=true
 else
-    echo "   ⚠️  未找到 Waza check skill"
+    echo "   ⚠️  未找到 Waza skill"
     echo "   pair-coding skill 需要 Waza 进行代码审查"
-    echo "   Waza 通常包含在 OpenClaw 中，会自动下载"
-    echo "   如果未自动安装，请运行: npm install -g @waza/skills"
+    echo "   Waza 是 OpenClaw 的标准 skill，需要单独安装"
     echo ""
-    WAZA_INSTALLED=false
+    echo "   安装命令："
+    echo "   方法 1: npm install -g waza-skills"
+    echo "   方法 2: git clone https://github.com/tw93/Waza.git && cd Waza && npm install && npm link"
+    echo ""
+    read -p "是否现在安装 Waza？(y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo ""
+        echo "🔧 安装 Waza..."
+        if command -v npm &> /dev/null; then
+            npm install -g waza-skills
+            if [ -f "$WAZA_SKILL" ]; then
+                echo "   ✓ Waza 安装成功！"
+                WAZA_INSTALLED=true
+            else
+                echo "   ❌ Waza 安装失败"
+                echo "   请手动安装：npm install -g waza-skills"
+            fi
+        else
+            echo "   ⚠️  未找到 npm"
+            echo "   请先安装 Node.js 和 npm"
+        fi
+    else
+        echo "   ⚠️  跳过 Waza 安装"
+        echo "   pair-coding skill 将无法使用"
+        WAZA_INSTALLED=false
+    fi
 fi
 echo ""
 
