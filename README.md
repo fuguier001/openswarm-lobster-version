@@ -7,6 +7,25 @@
 
 ---
 
+## 💻 操作系统选择
+
+请根据你的操作系统选择安装方式：
+
+- **macOS**：参考下面的完整安装指南
+- **Linux (Ubuntu/Debian)**：参考下面的完整安装指南
+- **Windows**：📖 **[查看 Windows 专用安装指南](WINDOWS.md)** ⚠️
+
+**⚠️ Windows 用户注意**：
+Windows 的安装过程与 macOS/Linux 有所不同，包括：
+- 安装 Docker Desktop for Windows（不是普通的 Docker）
+- PowerShell 命令和权限配置
+- 路径和空格处理
+- Git Bash 的使用
+
+**Windows 用户请直接查看 [WINDOWS.md](WINDOWS.md) 获取完整的 9 步安装流程和常见问题解答。**
+
+---
+
 ## 📖 什么是 OpenSwarm？
 
 OpenSwarm 是一个 **AI 开发团队编排系统**，通过 Worker/Reviewer 对模式、代码注册表、认知记忆等核心功能，提升代码质量、开发效率和知识管理能力。
@@ -71,6 +90,15 @@ OpenSwarm 是一个 **AI 开发团队编排系统**，通过 Worker/Reviewer 对
 
 ## 🚀 完整安装指南（新电脑）
 
+**⚠️ 重要提示**：
+
+- **macOS/Linux 用户**：按照下面的步骤进行安装
+- **Windows 用户**：请直接查看 **[WINDOWS.md](WINDOWS.md)** 获取详细的 Windows 专用安装指南
+
+下面的安装指南主要针对 macOS 和 Linux 用户。
+
+---
+
 ### 第 1 步：检查/安装 OpenClaw
 
 **如果你已经安装了 OpenClaw，跳过此步骤。**
@@ -102,6 +130,11 @@ openclaw --version
 ---
 
 ### 第 2 步：安装依赖
+
+**⚠️ Windows 用户**：
+Windows 用户的依赖安装过程（Git、Docker、Python）与 macOS/Linux 有所不同，请查看 **[WINDOWS.md](WINDOWS.md)** 获取详细的安装步骤。
+
+---
 
 #### 2.1 安装 Git（如果未安装）
 
