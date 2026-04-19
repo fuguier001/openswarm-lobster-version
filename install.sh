@@ -21,6 +21,23 @@ fi
 echo "✓ 找到 OpenClaw 安装目录: $OPENCLAW_SKILLS_DIR"
 echo ""
 
+# 检查 Waza
+echo "🔍 检查 Waza skill..."
+
+WAZA_CHECK_SKILL="${HOME}/.npm-global/lib/node_modules/openclaw/skills/waza/skills/check"
+if [ -f "$WAZA_CHECK_SKILL/SKILL.md" ]; then
+    echo "   ✓ Waza check skill 已安装"
+    WAZA_INSTALLED=true
+else
+    echo "   ⚠️  未找到 Waza check skill"
+    echo "   pair-coding skill 需要 Waza 进行代码审查"
+    echo "   Waza 通常包含在 OpenClaw 中，会自动下载"
+    echo "   如果未自动安装，请运行: npm install -g @waza/skills"
+    echo ""
+    WAZA_INSTALLED=false
+fi
+echo ""
+
 # 检查 ChromaDB
 echo "🔍 检查 ChromaDB..."
 
@@ -150,8 +167,12 @@ echo ""
 echo "✅ 安装完成！"
 echo ""
 echo "📚 已安装的 skills："
-echo "   - pair-coding: Worker/Reviewer 对模式"
-echo "   - code-registry: 代码注册表 + BS 检测器"
+if $WAZA_INSTALLED; then
+    echo "   - pair-coding: Worker/Reviewer 对模式（✓ Waza 已配置）"
+else
+    echo "   - pair-coding: Worker/Reviewer 对模式（⚠️ 需要 Waza）"
+fi
+echo "   - code-registry: 代码注册表 + BS 检测器（✓ 无需额外依赖）"
 if $CHROMADB_RUNNING; then
     echo "   - cognitive-memory: 认知记忆系统（✓ ChromaDB 已配置）"
 else
@@ -163,6 +184,11 @@ echo "   1. 重启 OpenClaw"
 echo "   2. 查看 USAGE.md 了解如何使用"
 echo "   3. 配置 HEARTBEAT.md 启用自动化（可选）"
 echo ""
+if ! $WAZA_INSTALLED; then
+    echo "⚠️  注意：pair-coding skill 需要 Waza check skill"
+    echo "   安装命令：npm install -g @waza/skills"
+    echo ""
+fi
 if ! $CHROMADB_RUNNING; then
     echo "⚠️  注意：cognitive-memory skill 需要 ChromaDB"
     echo "   安装命令：docker run -d -p 8000:8000 chromadb/chroma"

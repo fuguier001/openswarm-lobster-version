@@ -44,9 +44,21 @@ chmod +x install.sh
 | 组件 | 状态 | 说明 |
 |------|------|------|
 | OpenClaw | ✅ 必需 | 需要已安装 |
+| Waza skill | ✅ 必需 | pair-coding 需要（check skill）|
 | ChromaDB | ⚠️ 条件必需 | cognitive-memory 需要 |
 | Docker | 🐳 可选 | 推荐，用于运行 ChromaDB |
 | Python 3.8+ | 🐍 可选 | 用于本地安装 ChromaDB |
+
+### 检查 Waza 安装
+
+```bash
+# 检查 Waza skill
+ls ~/.npm-global/lib/node_modules/openclaw/skills/wasa/skills/check/
+
+# 如果不存在，Waza 通常会自动下载
+# 或手动安装
+npm install -g @waza/skills
+```
 
 ### 安装 ChromaDB 的方法
 
